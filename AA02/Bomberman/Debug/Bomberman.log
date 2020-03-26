@@ -1,0 +1,3 @@
+﻿  Source.cpp
+c:\users\josea\desktop\bombermanrepositorio\34_morenojoseantonio_saizdavid_aa2_1\aa02\bomberman\source.cpp(3): warning C4930: 'Player player(void)': no se ha llamado a la función prototipo (¿se pensó una definición de variable?)
+  Bomberman.vcxproj -> C:\Users\josea\Desktop\BombermanRepositorio\34_MorenoJoseAntonio_SaizDavid_AA2_1\AA02\Debug\Bomberman.exe
