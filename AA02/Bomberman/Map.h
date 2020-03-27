@@ -6,16 +6,14 @@
 
 class Map {
 private:
-	char **map;
+	Cell **map;
 	int numRows, numColumns;
 
 public:
-	//CONSTRUCTOR
-	Map() {
-		
-		std::ifstream myFile("config.txt");
-		
+	//CONSTRUCTOR static_cast<int>(...lo que se quiere transformar en int)
 
+	Map() {
+		std::ifstream myFile("config.txt");
 		if (myFile.is_open())
 		{
 			if (!myFile.eof())
@@ -24,33 +22,27 @@ public:
 				myFile.ignore();
 				myFile >> numColumns;
 
-				map = new char*[numRows];
+				map = new Cell *[numRows];
 
 				for (int i = 0; i < numRows; i++) {
-					map[i] = new char[numColumns];
+					map[i] = new Cell[numColumns];
 				}
 
 				myFile.ignore();
+				char temp;
 
-					for (int i = 0; i < numRows; i++) {
-						for (int j = 0; j < numColumns; j++) {
-							myFile.get(map[i][j]) >> std::noskipws;
-						}
-						myFile.ignore();
+				for (int i = 0; i < numRows; i++) {
+					for (int j = 0; j < numColumns; j++) {
+						myFile.get(temp) >> std::noskipws;
+						map[i][j] = static_cast<Cell>(temp);
 					}
-				
+					myFile.ignore();
+				}
+
 			}
 			myFile.close();
 		}
 		else std::cout << "Unable to open file";
-		
-		
-		
-
-		
-
-		
-
 
 	}
 
@@ -58,7 +50,7 @@ public:
 	void print() {
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
-				std::cout << map[i][j];
+				std::cout << static_cast<char>(map[i][j]);
 			}
 			std::cout << std::endl;
 		}
