@@ -1,7 +1,7 @@
 15,17
 XXXXXXXXXXXXXXXXX
-X1        ***   X
-X X X X X*X*X*X*X
+X         ***   X
+X1X X X X*X*X*X*X
 X ***    ***  **X
 X X X X X X*X X*X
 X  ***   ***  **X
