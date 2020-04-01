@@ -1,10 +1,12 @@
 #pragma once
 #include "Types.h"
+#include <iostream>
 class Player {
 private:
 	char pChar;
 	int score;
 	Position position;
+	InputKey input;
 
 public:
 	
@@ -50,6 +52,13 @@ public:
 			}
 	}
 
+	void SetInput(InputKey _input) {
+		input = _input;
+	}
+
+	InputKey GetInput() {
+		return input;
+	}
 
 	void SetPos(Position _position) {
 		position = _position;
@@ -62,6 +71,10 @@ public:
 
 	Position GetPos() {
 		return position;
+	}
+
+	void PrintScore() {
+		std::cout<< "SCORE PLAYER" << pChar << ": " << score << std::endl;
 	}
 
 	char GetpChar();

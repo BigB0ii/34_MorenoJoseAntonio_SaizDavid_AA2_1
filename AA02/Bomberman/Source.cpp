@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "InputManager.h"
+#include <Windows.h>
 
 int main() {
 	Map map;
@@ -17,7 +18,7 @@ int main() {
 
 
 
-
+	
 
 
 	//primer print
@@ -26,38 +27,108 @@ int main() {
 	//GAME LOOP
 	while (!endgame)
 	{
-		
-
 		//Input
 		input.Update();
-
+		#pragma region PLAYER 1
 		//Update --> game logic
-
 		if (input.keys[(int)InputKey::UP]) {
-			std::cout << "INPUT OK" << std::endl;
-
-			if (map.CheckMove(p1.GetPos(), InputKey::UP)) {
-
-				Position nextMove = p1.NextMove(InputKey::UP);
-
-				//Cambiar posición tablero
-				map.Move(p1, nextMove);
-
-
-				//Cambiar posición del player
-				p1.SetPos(nextMove);
+			p1.SetInput(InputKey::UP);
+			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
+				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
+				
 
 
 
 			}
 
 		}
+		if (input.keys[(int)InputKey::RIGHT]) {
+			p1.SetInput(InputKey::RIGHT);
+			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
+				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
 
+
+
+
+			}
+
+		}
+		if (input.keys[(int)InputKey::LEFT]) {
+			p1.SetInput(InputKey::LEFT);
+			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
+				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
+
+
+
+
+			}
+
+		}
+		if (input.keys[(int)InputKey::DOWN]) {
+			p1.SetInput(InputKey::DOWN);
+			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
+				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
+
+
+
+
+			}
+		}
+		#pragma endregion
+		#pragma region PLAYER 2
+		if (input.keys[(int)InputKey::W]) {
+			p2.SetInput(InputKey::W);
+			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
+				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
+
+
+
+
+			}
+
+		}if (input.keys[(int)InputKey::A]) {
+			p2.SetInput(InputKey::A);
+			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
+				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
+
+
+
+
+			}
+
+		}
+		if (input.keys[(int)InputKey::S]) {
+			p2.SetInput(InputKey::S);
+			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
+				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
+
+
+
+
+			}
+
+		}
+		if (input.keys[(int)InputKey::D]) {
+			p2.SetInput(InputKey::D);
+			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
+				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
+
+
+
+
+			}
+
+		}
+		#pragma endregion
 		//Print
 		system("cls");
 		map.Print();
+		p1.PrintScore();
+		p2.PrintScore();
+		Sleep(50);
+    }
 
 
-	}
+
 	return 0;
-}
+} 
