@@ -19,9 +19,10 @@ int main() {
 	//GAME LOOP
 	while (!endgame)
 	{
-		//Input
+			//Input
 		input.Update();
-		//Update --> game logic
+		
+			//Update --> game logic
 		#pragma region PLAYER 1
 		if (input.keys[(int)InputKey::UP]) {
 			p1.input = InputKey::UP;
@@ -80,7 +81,8 @@ int main() {
 
 		}
 		#pragma endregion
-		//Print
+		
+			//Print
 		system("cls");
 		map.Print();
 		p1.PrintScore();

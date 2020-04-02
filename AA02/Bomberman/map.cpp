@@ -135,8 +135,6 @@ void Map::FindPlayer(Player &player) const{
 }
 
 void Map::Print() const{
-
-	
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	for (int i = 0; i < numRows; i++) {
@@ -172,12 +170,4 @@ void Map::Print() const{
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-	/*
-	for (int i = 0; i < numRows; i++) {
-		for (int j = 0; j < numColumns; j++) {
-			std::cout << static_cast<char>(map[i][j]);
-		}
-		std::cout << std::endl;
-	}
-	*/
 }
