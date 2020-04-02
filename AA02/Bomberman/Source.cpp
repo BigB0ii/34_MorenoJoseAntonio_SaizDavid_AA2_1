@@ -11,15 +11,8 @@ int main() {
 	bool endgame = false;
 	InputData input;
 
-
 	map.FindPlayer(p1);
 	map.FindPlayer(p2);
-
-
-
-
-	
-
 
 	//primer print
 	map.Print();
@@ -29,8 +22,8 @@ int main() {
 	{
 		//Input
 		input.Update();
-		#pragma region PLAYER 1
 		//Update --> game logic
+		#pragma region PLAYER 1
 		if (input.keys[(int)InputKey::UP]) {
 			p1.SetInput(InputKey::UP);
 			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
@@ -127,8 +120,5 @@ int main() {
 		p2.PrintScore();
 		Sleep(50);
     }
-
-
-
 	return 0;
 } 
