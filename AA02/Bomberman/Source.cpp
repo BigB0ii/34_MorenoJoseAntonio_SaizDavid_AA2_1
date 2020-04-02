@@ -1,7 +1,6 @@
-#include "Player.h"
 #include "Map.h"
-#include "InputManager.h"
-#include <Windows.h>
+#include "Constants.h"
+
 
 int main() {
 	Map map;
@@ -25,90 +24,58 @@ int main() {
 		//Update --> game logic
 		#pragma region PLAYER 1
 		if (input.keys[(int)InputKey::UP]) {
-			p1.SetInput(InputKey::UP);
-			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
-				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
-				
-
-
-
+			p1.input = InputKey::UP;
+			if (map.CheckMove(p1.position, p1.input)) {
+				p1.position = map.MovePlayer(p1.position, p1.input, p1.GetpChar());
 			}
 
 		}
 		if (input.keys[(int)InputKey::RIGHT]) {
-			p1.SetInput(InputKey::RIGHT);
-			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
-				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
-
-
-
-
+			p1.input = InputKey::RIGHT;
+			if (map.CheckMove(p1.position, p1.input)) {
+				p1.position = map.MovePlayer(p1.position, p1.input, p1.GetpChar());
 			}
 
 		}
 		if (input.keys[(int)InputKey::LEFT]) {
-			p1.SetInput(InputKey::LEFT);
-			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
-				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
-
-
-
-
+			p1.input = InputKey::LEFT;
+			if (map.CheckMove(p1.position, p1.input)) {
+				p1.position = map.MovePlayer(p1.position, p1.input, p1.GetpChar());
 			}
 
 		}
 		if (input.keys[(int)InputKey::DOWN]) {
-			p1.SetInput(InputKey::DOWN);
-			if (map.CheckMove(p1.GetPos(), p1.GetInput())) {
-				p1.SetPos(map.MovePlayer(p1.GetPos(), p1.GetInput()));
-
-
-
-
+			p1.input = InputKey::DOWN;
+			if (map.CheckMove(p1.position, p1.input)) {
+				p1.position = map.MovePlayer(p1.position, p1.input, p1.GetpChar());
 			}
 		}
 		#pragma endregion
 		#pragma region PLAYER 2
 		if (input.keys[(int)InputKey::W]) {
-			p2.SetInput(InputKey::W);
-			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
-				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
-
-
-
-
+			p2.input = InputKey::W;
+			if (map.CheckMove(p2.position, p2.input)) {
+				p2.position = map.MovePlayer(p2.position, p2.input, p2.GetpChar());
 			}
 
 		}if (input.keys[(int)InputKey::A]) {
-			p2.SetInput(InputKey::A);
-			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
-				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
-
-
-
-
+			p2.input = InputKey::A;
+			if (map.CheckMove(p2.position, p2.input)) {
+				p2.position = map.MovePlayer(p2.position, p2.input, p2.GetpChar());
 			}
 
 		}
 		if (input.keys[(int)InputKey::S]) {
-			p2.SetInput(InputKey::S);
-			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
-				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
-
-
-
-
+			p2.input = InputKey::S;
+			if (map.CheckMove(p2.position, p2.input)) {
+				p2.position = map.MovePlayer(p2.position, p2.input, p2.GetpChar());
 			}
 
 		}
 		if (input.keys[(int)InputKey::D]) {
-			p2.SetInput(InputKey::D);
-			if (map.CheckMove(p2.GetPos(), p2.GetInput())) {
-				p2.SetPos(map.MovePlayer(p2.GetPos(), p2.GetInput()));
-
-
-
-
+			p2.input = InputKey::D;
+			if (map.CheckMove(p2.position, p2.input)) {
+				p2.position = map.MovePlayer(p2.position, p2.input, p2.GetpChar());
 			}
 
 		}
@@ -118,7 +85,7 @@ int main() {
 		map.Print();
 		p1.PrintScore();
 		p2.PrintScore();
-		Sleep(50);
+		Sleep(frameTime);
     }
 	return 0;
 } 

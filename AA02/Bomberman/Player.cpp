@@ -1,31 +1,21 @@
 #include "Player.h"
 
-void Player::SetInput(InputKey _input){
-	input = _input;
+Player::Player(char _pChar) {
+	pChar = _pChar;
+	position.x = 0;
+	position.y = 0;
+	score = 0;
 }
-InputKey Player::GetInput()
-{
-	return InputKey();
-}
-void Player::SetPos(Position _position)
-{
-	position = _position;
-}
-void Player::SetPos(int x, int y) 
-{
-	position.x = x;
-	position.y = y;
-}
-Position Player::GetPos() ç
-{
-	return position;
-}
-void Player::PrintScore() 
-{
+
+
+void Player::PrintScore() const{
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 87);
 	std::cout << "SCORE PLAYER" << pChar << ": " << score << std::endl;
+	SetConsoleTextAttribute(hConsole, 0);
 }
-char Player::GetpChar()
-{
+char Player::GetpChar() const{
 	return pChar;
 }
 

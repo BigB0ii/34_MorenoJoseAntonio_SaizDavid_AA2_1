@@ -2,7 +2,6 @@
 struct Position {
 	int x;
 	int y;
-
 };
 
 enum class Cell{BLOC = 'X', MUR = '*', NOTHING = ' ', JUGADOR1 = '1', JUGADOR2 = '2' };

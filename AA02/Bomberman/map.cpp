@@ -1,6 +1,40 @@
 #include "Map.h"
 
-bool Map::CheckMove(Position pPos, InputKey movement) {
+Map::Map() {
+	std::ifstream myFile("config.txt");
+	if (myFile.is_open())
+	{
+		if (!myFile.eof())
+		{
+			myFile >> numRows;
+			myFile.ignore();
+			myFile >> numColumns;
+
+			map = new Cell *[numRows];
+
+			for (int i = 0; i < numRows; i++) {
+				map[i] = new Cell[numColumns];
+			}
+
+			myFile.ignore();
+			char temp;
+
+			for (int i = 0; i < numRows; i++) {
+				for (int j = 0; j < numColumns; j++) {
+					myFile.get(temp) >> std::noskipws;
+					map[i][j] = static_cast<Cell>(temp);
+				}
+				myFile.ignore();
+			}
+
+		}
+		myFile.close();
+	}
+	else std::cout << "Unable to open file";
+
+}
+
+bool Map::CheckMove(const Position &pPos,const InputKey &movement) const {
 	switch (movement)
 	{
 	case InputKey::UP:
@@ -44,9 +78,13 @@ bool Map::CheckMove(Position pPos, InputKey movement) {
 		break;
 	}
 }
-Position Map::MovePlayer(Position pPos, InputKey nextMove) {
+Position Map::MovePlayer(const Position &pPos,const InputKey &nextMove,const char &pChar){
 	Position nextPos = pPos;
+	//LA POSICIÓN ANTERIOR DEL PLAYER LA BORRA
 	map[pPos.y][pPos.x] = Cell::NOTHING;
+
+
+	//SEGÚN EL INPUT MODIFICA LA nextPos
 	switch (nextMove)
 	{
 	case InputKey::UP:
@@ -69,31 +107,36 @@ Position Map::MovePlayer(Position pPos, InputKey nextMove) {
 		return nextPos;
 		break;
 	}
-	if (nextMove == InputKey::UP || nextMove == InputKey::DOWN || nextMove == InputKey::LEFT || nextMove == InputKey::RIGHT) {
+
+	//SI ES EL PLAYER 1 CAMBIA LA POS DEL P1 y SI ES DEL 2 LA DEL 2
+	if (pChar == '1') {
 		map[nextPos.y][nextPos.x] = Cell::JUGADOR1;
 	}
-	else if (nextMove == InputKey::W || nextMove == InputKey::S || nextMove == InputKey::A || nextMove == InputKey::D) {
+	else if (pChar == '2') {
 		map[nextPos.y][nextPos.x] = Cell::JUGADOR2;
 	}
 	return nextPos;
 
 }
 
-void Map::FindPlayer(Player &player) {
+void Map::FindPlayer(Player &player) const{
 	char _pChar = player.GetpChar();
 	bool stop = false;
 	for (int i = 0; i < numRows; i++) {
-		for (int j = 0; j < numColumns; j++)
+		for (int j = 0; j < numColumns; j++) {
 			if (static_cast<char>(map[i][j]) == _pChar) {
-				player.SetPos(j, i);
+				player.position.y = i;
+				player.position.x = j;
 				stop = true;
 			}
-		if (stop)
-			break;
+			if (stop) break;
+		}
 	}
 }
 
-void Map::Print() {
+void Map::Print() const{
+
+	
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	for (int i = 0; i < numRows; i++) {
@@ -125,7 +168,16 @@ void Map::Print() {
 			}
 
 		}
+		SetConsoleTextAttribute(hConsole, 0);
 		std::cout << std::endl;
 	}
-}
+	std::cout << std::endl;
+	/*
+	for (int i = 0; i < numRows; i++) {
+		for (int j = 0; j < numColumns; j++) {
+			std::cout << static_cast<char>(map[i][j]);
+		}
+		std::cout << std::endl;
+	}
+	*/
 }

@@ -1,35 +1,19 @@
 #pragma once
-#include "Types.h"
-#include <iostream>
+#include "InputManager.h"
+
 class Player {
 private:
 	char pChar;
 	int score;
+
+public:
 	Position position;
 	InputKey input;
 
-public:
-	
-	Player(char _pChar) {
-		pChar = _pChar;
-		position.x = 0;
-		position.y = 0;
-		score = 0;
-	}
+	Player(char _pChar);
 
 	//FUNCIONES
+	void PrintScore() const;
 
-	void SetInput(InputKey _input);
-
-	InputKey GetInput();
-
-	void SetPos(Position _position); 
-
-	void SetPos(int x, int y);
-
-	Position GetPos();
-
-	void PrintScore();
-
-	char GetpChar();
+	char GetpChar() const;
 };
